@@ -30,7 +30,7 @@ class SuffixLemmatizer(object):
     
     def dict_lookup_suffix(self, word, min_suf_len=5):
         """ Returns (prefix, suffix, candidate-lemmas) using longest suffix match """
-        for i in xrange(max(len(word) - min_suf_len, 1)):
+        for i in range(max(len(word) - min_suf_len, 1)):
             if word[i:] in self.dic:
                 return word[:i], word[i:], self.dic[word[i:]]
         else:
@@ -44,7 +44,7 @@ class SuffixLemmatizer(object):
             i += 1
         suf_lem = lemma[i:]
         suf_inf = inflection[i:]
-        for j in xrange(i-1, i-pref_len-1, -1):
+        for j in range(i-1, i-pref_len-1, -1):
             pref = lemma[j] if j >= 0 else '$'
             suf_lem = pref + suf_lem
             suf_inf = pref + suf_inf
@@ -82,7 +82,7 @@ class SuffixLemmatizer(object):
         score candidates using channel model & language model.
         """
         candidates = []
-        for i in xrange(len(word) + 1):
+        for i in range(len(word) + 1):
             w_pref, w_suf = word[:i], word[i:]
             for l_suf in self.wsuf2lsuf_dict[w_suf]:
                 lemma = w_pref + l_suf
