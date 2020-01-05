@@ -84,8 +84,8 @@ exceptions = dict([
 
 def inverse_channel_model(chnl_model):
     D = defaultdict(set)
-    for l_suf, w_suf_dict in chnl_model.iteritems():
-        for w_suf in w_suf_dict.iterkeys():
+    for l_suf, w_suf_dict in chnl_model.items():
+        for w_suf in w_suf_dict.keys():
             D[w_suf].add(l_suf)
     return D
 
@@ -104,9 +104,9 @@ def train_channel_model(suf_sub_func, min_count=1):
                 continue
             l_suf, w_suf = suf_sub_func(lem, word)
             M[l_suf][w_suf] += int(n)
-    for l_suf, w_suf_dict in M.iteritems():
+    for l_suf, w_suf_dict in M.items():
         l_suf_count = sum(w_suf_dict.values())
-        for w_suf in w_suf_dict.iterkeys(): 
+        for w_suf in w_suf_dict.keys(): 
             M[l_suf][w_suf] /= float(l_suf_count)
     return M
 
@@ -117,13 +117,13 @@ def train_language_model(ngram=1, smoothing=None):
     """
 
     def train_with_no_smoothing(lemma2count_dict):
-        total_lem_count = float(sum(lemma2count_dict.itervalues()))
+        total_lem_count = float(sum(lemma2count_dict.values()))
         for lem in lemma2count_dict:
             lemma2count_dict[lem] /= total_lem_count
         return lemma2count_dict
         
     def train_with_add_one_smoothing(lemma2count_dict):
-        total_lem_count  = sum(lemma2count_dict.itervalues())
+        total_lem_count  = sum(lemma2count_dict.values())
         unique_lem_count = len(lemma2count_dict)
         for lem in lemma2count_dict:
             lemma2count_dict[lem] = (lemma2count_dict[lem] + 1.0) /\
