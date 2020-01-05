@@ -6,7 +6,7 @@ Suffix-lemmatizer is a lemmatizer for Estonian language, which handles both in- 
 
 ## Installation
 ```
-git clone https://github.com/estnltk/suffix-lemmatizer.git
+git clone https://github.com/Braffolk/suffix-lemmatizer.git
 cd suffix-lemmatizer
 python setup.py install
 ```
